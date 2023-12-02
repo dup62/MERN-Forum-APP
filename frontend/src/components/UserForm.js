@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useUsersContext } from '../hooks/useUsersContext';
 
 const UserForm = () => {
+    const { dispatch } = useUsersContext()
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -28,6 +31,7 @@ const UserForm = () => {
             setUsername('')
             setPassword('')
             setEmail('')
+            dispatch({type: 'CREATE_USERS', payload: json})
             console.log('New users added:', json)
         }
 

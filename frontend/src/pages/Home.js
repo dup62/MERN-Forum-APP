@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
+import { useUsersContext } from '../hooks/useUsersContext';
 // Compoments
 import UsersDetails from "../components/UsersDetails";
 import UserForm from "../components/UserForm";
 
 const Home = () => {
 
-    const [users, setUsers] = useState([]);
+    const { users, dispatch } = useUsersContext()
 
     useEffect(() => {
         const fetchUsers = async () => {
             const response = await fetch('/api/users');
-            const data = await response.json();
+            const json = await response.json();
 
             if (response.ok) {
-                setUsers(data);
+                dispatch({type: 'SET_USERS', payload: json})
             }
 
         };
 
         fetchUsers();
 
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">
