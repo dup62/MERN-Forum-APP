@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 // Compoments
 import UsersDetails from "../components/UsersDetails";
+import UserForm from "../components/UserForm";
 
 const Home = () => {
 
@@ -29,6 +30,7 @@ const Home = () => {
                     <UsersDetails user={user} key={user._id} />
                 )) }
             </div>
+            <UserForm />
         </div>
     );
 }

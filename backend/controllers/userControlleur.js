@@ -135,11 +135,24 @@ const testControlleur = async (req, res) => {
 };
 
 const usersControlleur = async (req, res) => {
-    const users = await User.find({}).sort({createdAt: -1});
+    const users = await User.find({}).sort({ createdAt: -1 });
     res.status(200).json(users);
+};
+
+const createUser = async (req, res) => {
+    const { username, password, email } = req.body;
+
+    try {
+        const user = await User.create({ username, password, email });
+        res.status(201).json(user);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 module.exports = {
     testControlleur,
-    usersControlleur
+    usersControlleur,
+    createUser
 };

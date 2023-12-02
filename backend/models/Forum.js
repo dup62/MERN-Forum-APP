@@ -5,7 +5,7 @@ const forumSchema = new mongoose.Schema({
   description: { type: String },
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-});
+}, { timestamps: true });
 
 const Forum = mongoose.model('Forum', forumSchema);
 

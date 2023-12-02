@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   likes: { type: Number, default: 0 },
   created_at: { type: Date, default: Date.now },
-});
+}, { timestamps: true });
 
 const Post = mongoose.model('Post', postSchema);
 
