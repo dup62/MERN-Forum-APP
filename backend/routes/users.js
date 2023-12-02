@@ -1,11 +1,12 @@
 const express = require('express');
 const {
-    testControlleur
+    testControlleur,
+    usersControlleur
 } = require('../controllers/userControlleur');
 
 const router = express.Router();
 
-router.get('/', testControlleur);
+router.get('/', usersControlleur);
 
 router.get('/:id', (req, res) => {
     res.send('User ' + req.params.id);
