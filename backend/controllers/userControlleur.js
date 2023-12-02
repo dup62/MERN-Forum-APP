@@ -135,7 +135,7 @@ const testControlleur = async (req, res) => {
 };
 
 const usersControlleur = async (req, res) => {
-    const users = await User.find({}).sort({ createdAt: -1 });
+    const users = await User.find({}).select('-password').sort({ createdAt: -1 });
     res.status(200).json(users);
 };
 
@@ -151,8 +151,17 @@ const createUser = async (req, res) => {
     }
 };
 
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
 module.exports = {
-    testControlleur,
     usersControlleur,
-    createUser
+    createUser,
+    deleteUser
 };
